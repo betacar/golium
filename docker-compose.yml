@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    restart: always
+    links:
+      - postgresql
+    ports:
+      - 9000:9000
+
+  postgresql:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=this_is_a_secure_password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=golium
